@@ -1,0 +1,191 @@
+.nav-shop li:last-child {
+    margin-left: 0px;
+}
+
+.banner-breadcrumb .breadcrumb-item a {
+    color: #4c5ced;
+}
+
+.header_area .navbar .nav .nav-item:last-child {
+    margin-right: 45px;
+}
+
+.button-register {
+    margin-top: 25px;
+}
+
+#verify {
+    padding: 70px 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.tab-content .tab-pane .rate .row {
+    height: 50px;
+}
+.tab-content .tab-pane .rate .row:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
+.tab-content .tab-pane .rate .row:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 25px;
+    color: #ccc;
+}
+.tab-content .tab-pane .rate .row:not(:checked) > label:before {
+    content: "★ ";
+}
+.tab-content .tab-pane .rate .row > input:checked ~ label {
+    color: #007bff;
+}
+.tab-content .tab-pane .rate .row:not(:checked) > label:hover,
+.tab-content .tab-pane .rate .row:not(:checked) > label:hover ~ label {
+    color: #007bff;
+}
+.tab-content .tab-pane .rate .row > input:checked + label:hover,
+.tab-content .tab-pane .rate .row > input:checked + label:hover ~ label,
+.tab-content .tab-pane .rate .row > input:checked ~ label:hover,
+.tab-content .tab-pane .rate .row > input:checked ~ label:hover ~ label,
+.tab-content .tab-pane .rate .row > label:hover ~ input:checked ~ label {
+    color: #007bff;
+}
+
+.review_box .rateP {
+    padding-top: 8px;
+    padding-right: 10px;
+}
+
+.review_box .outstanding {
+    padding-top: 9px;
+    padding-left: 10px;
+}
+
+.review_item .media .media-body .zero-star {
+    color: #ccc;
+}
+
+.blog_area .blog_left_sidebar .share .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.blog_area .blog_left_sidebar .share .inputfile + label {
+    display: inline-block;
+    cursor: pointer;
+    background-color: #eee;
+    height: 100%;
+    padding: 10px 10px 0 10px;
+}
+
+.blog_area .blog_left_sidebar .share input {
+    outline: none;
+    resize: none;
+    cursor: pointer;
+}
+
+.blog_area .blog_left_sidebar .share textarea {
+    outline: none;
+    resize: none;
+}
+
+.blog_area .blog_left_sidebar .share input:focus {
+    outline: none !important;
+    resize: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.blog_area .blog_left_sidebar .share textarea:focus {
+    outline: none !important;
+    resize: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.blog_area .blog_left_sidebar .share .publish-button button {
+    background-color: #384aeb;
+    color: #fff;
+}
+
+.blog_area .blog_left_sidebar .blog_item .blog_post .btn-success {
+    padding: 6px 31px;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.blog_area .blog_left_sidebar .blog_item .blog_post .btn-danger {
+    padding: 6px 31px;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.blog_area .single-post .blog_details .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.blog_area .single-post .blog_details .btn-success {
+    padding: 6px 31px;
+    font-size: 14px;
+    border-radius: 0;
+}
+
+.blog_area .single-post .blog_details input[type="file"] {
+    outline: none;
+    resize: none;
+    cursor: pointer;
+}
+
+.blog_area .single-post .blog_details input[type="text"] {
+    outline: none;
+    resize: none;
+    font-size: 24px;
+    line-height: 36px;
+    color: #222;
+    font-weight: 600;
+    transition: all 0.3s linear;
+}
+
+.blog_area .single-post .blog_details textarea {
+    outline: none;
+    resize: none;
+}
+
+.blog_area .single-post .blog_details input:focus {
+    outline: none !important;
+    resize: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #384aeb;
+}
+
+.blog_area .single-post .blog_details textarea:focus {
+    outline: none !important;
+    resize: none !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #384aeb;
+}
+
+.billing_details .contact_form .form-group .country_select .list {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.billing_details .contact_form .form-group .form-control {
+    resize: none;
+}
