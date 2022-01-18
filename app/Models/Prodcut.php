@@ -84,6 +84,11 @@ class Prodcut extends Model
         return $this->hasMany(Wishlist::class);
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'prodcut_orders')->withPivot(['quantity', 'total']);
+    }
+
     public static function topProdcuts()
     {
         $prodcuts = Prodcut::with('reviews')->get();

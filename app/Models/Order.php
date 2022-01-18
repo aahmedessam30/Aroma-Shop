@@ -21,12 +21,24 @@ class Order extends Model
         'item_count',
         'is_paid',
         'payment_method',
-        'notes'
+        'billing_name',
+        'billing_email',
+        'billing_phone',
+        'billing_country',
+        'billing_city',
+        'billing_address',
+        'billing_zip',
+        'shipped',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function prodcuts()
+    {
+        return $this->belongsToMany(Prodcut::class, 'prodcut_orders')->withPivot(['quantity', 'total']);
     }
 
     /**

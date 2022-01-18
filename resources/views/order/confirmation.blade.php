@@ -55,19 +55,19 @@
                         <table class="order-rable">
                             <tr>
                                 <td>Street</td>
-                                <td>: {{ $address->address }}</td>
+                                <td>: {{ $order->billing_address }}</td>
                             </tr>
                             <tr>
                                 <td>City</td>
-                                <td>: {{ $address->city }}</td>
+                                <td>: {{ $order->billing_city }}</td>
                             </tr>
                             <tr>
                                 <td>Country</td>
-                                <td>: {{ $address->country }}</td>
+                                <td>: {{ $order->billing_country }}</td>
                             </tr>
                             <tr>
                                 <td>Postcode</td>
-                                <td>: {{ $address->zip }}</td>
+                                <td>: {{ $order->billing_zip }}</td>
                             </tr>
                         </table>
                     </div>
@@ -78,19 +78,19 @@
                         <table class="order-rable">
                             <tr>
                                 <td>Street</td>
-                                <td>: {{ $address->address }}</td>
+                                <td>: {{ $order->billing_address }}</td>
                             </tr>
                             <tr>
                                 <td>City</td>
-                                <td>: {{ $address->city }}</td>
+                                <td>: {{ $order->billing_city }}</td>
                             </tr>
                             <tr>
                                 <td>Country</td>
-                                <td>: {{ $address->country }}</td>
+                                <td>: {{ $order->billing_country }}</td>
                             </tr>
                             <tr>
                                 <td>Postcode</td>
-                                <td>: {{ $address->zip }}</td>
+                                <td>: {{ $order->billing_zip }}</td>
                             </tr>
                         </table>
                     </div>
@@ -108,17 +108,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($cart)
-                                @foreach ($cart->items as $prodcut)
+                            @if ($order)
+                                @foreach ($order->prodcuts as $prodcut)
                                     <tr>
                                         <td>
-                                            <p>{{ $prodcut['name'] }}</p>
+                                            <p>{{ $prodcut->name }}</p>
                                         </td>
                                         <td>
-                                            <h5>x {{ $prodcut['qty'] }}</h5>
+                                            <h5>x {{ $prodcut->pivot->quantity }}</h5>
                                         </td>
                                         <td>
-                                            <p>${{ $prodcut['price'] }}</p>
+                                            <p>${{ $prodcut->pivot->total }}</p>
                                         </td>
                                     <tr>
                                 @endforeach
@@ -129,7 +129,7 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>${{ $cart->totalPrice }}</p>
+                                    <p>${{ $order->totalPrice - 50 }}</p>
                                 </td>
                                 </tr>
                                 <tr>
@@ -151,13 +151,17 @@
                                         <h5></h5>
                                     </td>
                                     <td>
-                                        <h4>${{ $cart->totalPrice + 50 }}</h4>
+                                        <h4>${{ $order->totalPrice }}</h4>
                                     </td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="offset-9 col-md-3">
+                <a href="{{ route('home') }}" class="button button-paypal text-center    mt-3"><i class="fas fa-arrow-circle-left"></i>
+                    Return To Home</a>
             </div>
         </div>
     </section>

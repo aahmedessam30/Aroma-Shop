@@ -21,6 +21,14 @@ class CreateOrdersTable extends Migration
             $table->float('totalPrice');
             $table->integer('item_count');
             $table->boolean('is_paid')->default(0);
+            $table->string('billing_email')->nullable();
+            $table->string('billing_name')->nullable();
+            $table->string('billing_address')->nullable();
+            $table->string('billing_city')->nullable();
+            $table->string('billing_country')->nullable();
+            $table->string('billing_zip')->nullable();
+            $table->string('billing_phone')->nullable();
+            $table->boolean('shipped')->default(false);
             $table->enum('payment_method', ['cash_on_delivery', 'visa', 'master'])->default('cash_on_delivery');
             $table->timestamps();
         });

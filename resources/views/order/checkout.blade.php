@@ -59,11 +59,11 @@
                             </div>
 
                             <div class="col-md-6 form-group p_star">
-                                <input type="tel" class="form-control @error('number') is-invalid @enderror" id="number"
-                                    name="number" placeholder="Phone number" @auth value="{{ Auth::user()->phone }}"
+                                <input type="tel" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                                    name="phone" placeholder="Phone number" @auth value="{{ Auth::user()->phone }}"
                                     @endauth>
 
-                                @error('number')
+                                @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -83,11 +83,11 @@
                             </div>
 
                             <div class="col-md-12 form-group p_star">
-                                <select class="country_select form-select @error('country') is-invalid @enderror"
+                                <select class="country_select p-0 pl-2 form-control @error('country') is-invalid @enderror"
                                     name="country">
-                                    <option value="" selected>Country</option>
+                                    <option value="">Country</option>
                                     @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                        <option value="{{ $country->name }}">{{ $country->name }}</option>
                                     @endforeach
                                 </select>
 

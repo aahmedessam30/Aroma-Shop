@@ -25,9 +25,9 @@ class OrderRequest extends FormRequest
     {
         return [
             'name'           => ['required', 'string'],
-            'number'         => ['required', 'regex:/(01)[0-9]{9}/', 'numeric'],
+            'phone'          => ['required', 'regex:/(01)[0-9]{9}/', 'numeric'],
             'email'          => ['required', 'email'],
-            'country'        => ['required', 'string'],
+            'country'        => ['required'],
             'address'        => ['required', 'string'],
             'city'           => ['required', 'string'],
             'zip'            => ['required', 'numeric'],
