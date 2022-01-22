@@ -189,3 +189,23 @@
 .billing_details .contact_form .form-group .form-control {
     resize: none;
 }
+
+.billing_details .contact_form .form-group input[type="radio"]:checked + label {
+    cursor: pointer;
+    background-color: #384aeb;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.billing_details .contact_form .form-group input[type="radio"] + label {
+    color: #384aeb;
+    background-color: #fff;
+    cursor: pointer;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 25px;
+}

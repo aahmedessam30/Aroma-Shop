@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -31,7 +32,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::delete('wishlist', [WishlistController::class, 'clear'])->name('wishlist.clear');
 
-    Route::resource('order', OrderController::class)->only(['index', 'store']);
+    Route::resource('order', CheckoutController::class)->only(['index', 'store']);
+
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');

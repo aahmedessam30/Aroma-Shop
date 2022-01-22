@@ -132,27 +132,29 @@
                                 @enderror
                             </div>
 
-                            <div class="col-md-12 form-group p_star">
-                                <div class="row pl-2 pt-2">
+                            <div class="col-md-12 form-group p_star pt-3">
+                                <h3><i class="far fa-credit-card"></i> Billing Details</h3>
+                                <div class="row text-center pt-2 billing">
                                     <div class="col-md-6 form-check">
-                                        <input class="form-check-input" type="radio" name="payment_method" id="cash"
-                                            value="cash_on_delivery" checked>
+                                        <input class="form-check-input d-none" type="radio" name="payment_method" id="cash"
+                                            value="cash_on_delivery" checked onclick="hidePaypal()">
                                         <label class="form-check-label" for="cash">
-                                            Cash On Delivery
+                                            <i class="fas fa-wallet pr-1"></i> Cash
                                         </label>
                                     </div>
-                                    <div class="col-md-6 accordionform-check">
-                                        <input class="form-check-input" type="radio" name="payment_method" id="online"
-                                            value="online">
-                                        <label class="form-check-label" for="online">
-                                            Online Payment
+                                    <div class="col-md-6 accordion form-check">
+                                        <input class="form-check-input d-none" type="radio" name="payment_method"
+                                            id="paypal" value="paypal" onclick="showPaypal()">
+                                        <label class="form-check-label" for="paypal">
+                                            <i class="fab fa-paypal pr-1"></i> Paypal
                                         </label>
                                     </div>
                                 </div>
+                                <div class="d-none" id="paypal-button-container"></div>
                             </div>
                             <div class="col-md-12 form-group p_star text-center">
-                                <button type="submit" class="button button-paypal"><i class="fa fa-wallet"></i>
-                                    Proceed</button>
+                                <button type="submit" class="button button-paypal"><i class="fa fa-file-invoice"></i>
+                                    Submit Order</button>
                             </div>
                         </form>
                     </div>
@@ -187,4 +189,79 @@
         </div>
     </section>
     <!--================End Checkout Area =================-->
+@endsection
+
+@section('scripts')
+    @if (Session::has('error'))
+        <script>
+            toastr["error"]("{{ Session::get('error') }}");
+        </script>
+    @endif
+
+    <script src="https://www.paypal.com/sdk/js?client-id={{ config('paypal.sandbox.client_id') }}&currency=USD"
+        data-namespace="paypal_sdk"></script>
+
+    <script>
+        function showPaypal() {
+            $("#paypal-button-container").removeClass('d-none');
+        }
+
+        function hidePaypal() {
+            $("#paypal-button-container").addClass('d-none');
+        }
+
+        // Render the PayPal button into #paypal-button-container
+        paypal_sdk.Buttons({
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+                return fetch('/api/paypal/order/create', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        'amount': {{ $cart->totalPrice + 50 }},
+                    }),
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+                    return orderData.id;
+                });
+            },
+
+            // Call your server to finalize the transaction
+            onApprove: function(data, actions) {
+                return fetch('/api/paypal/order/capture', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        orderId: data.orderID,
+                    })
+                }).then(function(res) {
+                    return res.json();
+                }).then(function(orderData) {
+                    var errorDetail = Array.isArray(orderData.details) && orderData.details[0];
+
+                    if (errorDetail && errorDetail.issue === 'INSTRUMENT_DECLINED') {
+                        return actions.restart(); // Recoverable state, per:
+                    }
+
+                    if (errorDetail) {
+                        var msg = 'Sorry, your transaction could not be processed.';
+                        return toastr["error"](msg);
+                    }
+
+                    // Successful capture! For demo purposes:
+                    var transaction = orderData.purchase_units[0].payments.captures[0];
+                    toastr["success"]('Payment Completed');
+                    $(".billing").empty().removeClass('row').html(
+                        "<div class='alert alert-success'>You have paid successfully</div>");
+                    $("#paypal-button-container").addClass('d-none');
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+
 @endsection

@@ -31,7 +31,6 @@ class OrderRequest extends FormRequest
             'address'        => ['required', 'string'],
             'city'           => ['required', 'string'],
             'zip'            => ['required', 'numeric'],
-            'payment_method' => ['required'],
         ];
     }
 }

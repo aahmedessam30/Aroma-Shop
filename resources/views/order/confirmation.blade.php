@@ -36,7 +36,7 @@
                             </tr>
                             <tr>
                                 <td>Date</td>
-                                <td>: {{ $order->created_at->diffForHumans() }}</td>
+                                <td>: {{ $order->created_at->format('d/m/Y') }}</td>
                             </tr>
                             <tr>
                                 <td>Total</td>
@@ -160,7 +160,8 @@
                 </div>
             </div>
             <div class="offset-9 col-md-3">
-                <a href="{{ route('home') }}" class="button button-paypal text-center    mt-3"><i class="fas fa-arrow-circle-left"></i>
+                <a href="{{ route('home') }}" class="button button-paypal text-center    mt-3"><i
+                        class="fas fa-arrow-circle-left"></i>
                     Return To Home</a>
             </div>
         </div>

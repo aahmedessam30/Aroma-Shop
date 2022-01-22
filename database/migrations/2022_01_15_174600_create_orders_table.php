@@ -29,7 +29,7 @@ class CreateOrdersTable extends Migration
             $table->string('billing_zip')->nullable();
             $table->string('billing_phone')->nullable();
             $table->boolean('shipped')->default(false);
-            $table->enum('payment_method', ['cash_on_delivery', 'visa', 'master'])->default('cash_on_delivery');
+            $table->enum('payment_method', ['cash_on_delivery', 'paypal'])->default('cash_on_delivery');
             $table->timestamps();
         });
     }
